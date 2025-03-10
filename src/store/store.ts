@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import reducer from "./slices/countrySlice.tsx";
+import reducer from "./slices/countrySlice.ts";
 import { useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
     countrySlice: reducer,
+    
   },
 });
 

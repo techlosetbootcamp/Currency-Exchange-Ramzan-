@@ -1,29 +1,30 @@
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { TypeOfArray } from "../../types/Type.tsx";
-import axios from "axios";
-import { countryData } from "../../constants/Constants.tsx";
-
-export const axiosInstance = axios.create({
-  baseURL: "https://api.freecurrencyapi.com/v1/",
-  timeout: 5000,
-});
+import { initialStateType } from "../../types/type.tsx";
+import { countryData } from "../../constants/constants.tsx";
+import { axiosInstance } from "../../utiles/axiosInstance.ts";
 
 export const fetchCountry = createAsyncThunk("country/fetch", async () => {
-  try {
-    const response = await axiosInstance.get("/latest?apikey=fca_live_Z5ASNND7PH9Zv6nodjyWIhFdbKTt3dcMdSSajX10");
-    const ratesArray = Object.keys(response.data.data) as string[];
-    const nameArray = Object.values(response.data.data) as string[];
-    return { nameArray, ratesArray };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    throw new Error("Failed to fetch currency data");
-  }
+  const response = await axiosInstance.get("/latest/USD");
+  const ratesArray = Object.keys(response.data.conversion_rates) as string[];
+  const nameArray = Object.values(response.data.conversion_rates) as string[];
+  return { nameArray, ratesArray };
 });
 
-const initialState: TypeOfArray = {
+export const fetchCountryByName = createAsyncThunk(
+  "countryByName/fetch",
+  async (name: string) => {
+    const response = await axiosInstance.get(`/latest/${name}`);
+    const ratesArray = Object.keys(response.data.conversion_rates) as string[];
+    const nameArray = Object.values(response.data.conversion_rates) as string[];
+    return { nameArray, ratesArray };
+  }
+);
+
+const initialState: initialStateType = {
   names: [],
   rates: [],
+  resultName: [],
+  resultRates: [],
   dataData: countryData,
 };
 
@@ -43,6 +44,10 @@ const countries = createSlice({
     builder.addCase(fetchCountry.fulfilled, (state, action) => {
       state.names = action.payload.nameArray || [];
       state.rates = action.payload.ratesArray || [];
+    });
+    builder.addCase(fetchCountryByName.fulfilled, (state, action) => {
+      state.resultName = action.payload.nameArray || [];
+      state.resultRates = action.payload.ratesArray || [];
     });
   },
 });

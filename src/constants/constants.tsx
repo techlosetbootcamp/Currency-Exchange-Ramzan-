@@ -3,75 +3,75 @@ import { Country } from "../types/type";
 export const countryData: Country[] = [
   {
     name: "United States",
-    currency: "USD", // United States Dollar
+    currency: "USD",
   },
   {
     name: "United Kingdom",
-    currency: "GBP", // British Pound Sterling
+    currency: "GBP",
   },
   {
     name: "Canada",
-    currency: "CAD", // Canadian Dollar
+    currency: "CAD",
   },
   {
     name: "Australia",
-    currency: "AUD", // Australian Dollar
+    currency: "AUD",
   },
   {
     name: "France",
-    currency: "EUR", // Euro
+    currency: "EUR", 
   },
   {
     name: "Switzerland",
-    currency: "CHF", // Swiss Franc
+    currency: "CHF",
   },
   {
     name: "Japan",
-    currency: "JPY", // Japanese Yen
+    currency: "JPY",
   },
   {
     name: "India",
-    currency: "INR", // Indian Rupee
+    currency: "INR",
   },
   {
     name: "China",
-    currency: "CNY", // Chinese Yuan Renminbi
+    currency: "CNY",
   },
   {
     name: "South Korea",
-    currency: "KRW", // South Korean Won
+    currency: "KRW",
   },
   {
     name: "Brazil",
-    currency: "BRL", // Brazilian Real
+    currency: "BRL",
   },
   {
     name: "Mexico",
-    currency: "MXN", // Mexican Peso
+    currency: "MXN",
   },
   {
     name: "South Africa",
-    currency: "ZAR", // South African Rand
+    currency: "ZAR",
   },
   {
     name: "Russia",
-    currency: "RUB", // Russian Ruble
+    currency: "RUB", 
   },
   {
     name: "Turkey",
-    currency: "TRY", // Turkish Lira
+    currency: "TRY", 
   },
   {
     name: "Saudi Arabia",
-    currency: "SAR", // Saudi Riyal
+    currency: "SAR", 
   },
   {
     name: "China",
-    currency: "CNH", // Chinese Yuan Renminbi
+    currency: "CNH", 
   },
   {
     name: "Indonesia",
-    currency: "IDR", // Indonesian Rupiah
+    currency: "IDR",
   },
   {
     name: "Hong Kong",

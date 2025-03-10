@@ -8,27 +8,25 @@ import { cardData } from "../constants/constants.tsx";
 
 export default function IndividualCurrency() {
   const [isIPhone14, setIsIPhone14] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); // Track the search term
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Control dropdown visibility
-  const navigate = useNavigate(); // Hook for navigation
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
     if (
       /iphone/.test(userAgent) &&
-      [844, 852, 932].includes(window.screen.height) // Check for iPhone 14 series screen heights
+      [844, 852, 932].includes(window.screen.height)
     ) {
       setIsIPhone14(true);
     }
   }, []);
 
-  // Function to filter cards based on the search term
   const filteredCardData = cardData.filter((card) =>
     card.to.toLowerCase().includes(searchTerm.toLowerCase()) ||
     card.from.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Function to handle Go button click for iPhone users
   const handleGoClick = () => {
     navigate(`/convert?from=${searchTerm.split(' → ')[0]}&to=${searchTerm.split(' → ')[1]}`);
   };
@@ -37,7 +35,6 @@ export default function IndividualCurrency() {
     <>
       {isIPhone14 ? (
         <>
-          {/* Main Content for iPhone Users */}
           <div className="mt-24 text-center">
             <h1 className="lg:text-3xl text-xl md:text-2xl font-bold max-w-[540px] mx-auto">
               Exchange USD without hidden fees
@@ -47,7 +44,6 @@ export default function IndividualCurrency() {
             </p>
           </div>
 
-          {/* Floating USD Rate Lock Component */}
           <div className="w-[374px] h-[463px] border border-gray-300 rounded-lg fixed top-[500px] left-[27px] p-4 bg-white shadow-md flex flex-col justify-between">
             <div className="text-center mb-4">
               <h2 className="text-2xl font-semibold text-gray-800 fixed bottom-28 left-0 w-full text-center">
@@ -59,21 +55,18 @@ export default function IndividualCurrency() {
             </div>
           </div>
 
-          {/* Search bar and dropdown */}
           <div className="w-full max-w-[400px] mx-auto mt-8">
             <div className="relative">
-              {/* Search Bar */}
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                onFocus={() => setIsDropdownOpen(true)} // Open dropdown on focus
-                onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)} // Close dropdown with delay
+                onFocus={() => setIsDropdownOpen(true)} 
+                onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)} 
                 placeholder="Select a currency"
                 className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
               />
 
-              {/* Dropdown */}
               {isDropdownOpen && filteredCardData.length > 0 && (
                 <ul className="absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-md max-h-60 overflow-y-auto">
                   {filteredCardData.map((card, index) => (
@@ -81,8 +74,8 @@ export default function IndividualCurrency() {
                       key={index}
                       className="p-3 hover:bg-gray-100 cursor-pointer"
                       onMouseDown={() => {
-                        setSearchTerm(`${card.to} → ${card.from}`); // Set selected currency in search bar
-                        setIsDropdownOpen(false); // Close dropdown
+                        setSearchTerm(`${card.to} → ${card.from}`);
+                        setIsDropdownOpen(false); 
                       }}
                     >
                       {card.to} → {card.from}
@@ -94,7 +87,7 @@ export default function IndividualCurrency() {
               <div className="flex justify-center"> 
                 <button
                   className="mt-4 w-[250px] py-3 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-blue-300"
-                  onClick={handleGoClick} // Handle the button click to navigate
+                  onClick={handleGoClick}
                 >
                   Go
                 </button>

@@ -43,7 +43,7 @@ export default function Home() {
     setIconVisible(true);
     setTimeout(() => {
       setIconVisible(false);
-    }, 5000); // 5000ms = 5 seconds
+    }, 5000);
   };
 
   const convertHandle = async () => {
@@ -76,7 +76,7 @@ export default function Home() {
 
   const handlePopularCurrencyDropdown = () => {
     setIsOpenDropPopular(!isOpenDropPopular);
-    setIsOpenDrop(false); // Close the From Currency dropdown when Popular Currency dropdown opens
+    setIsOpenDrop(false);
   };
 
   return (

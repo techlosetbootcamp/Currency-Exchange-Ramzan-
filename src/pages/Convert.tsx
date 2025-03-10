@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useAppDispatch, useAppSelector } from "../store/store.tsx";
-import axios from "axios";  // Add axios for making API requests
+import axios from "axios";
 
 export default function Convert() {
   const [selamount, setSelAmount] = useState<number | string>(0);
@@ -16,9 +16,8 @@ export default function Convert() {
   const [selected, setSelected] = useState<number | string>("EUR");
   const [inputValue, setInputValue] = useState<string>("");
 
-  // New state for showing the info popup and controlling the timer
   const [iconVisible, setIconVisible] = useState(false);
-  const [messageVisible, setMessageVisible] = useState(false); // Controls the 5-sec message
+  const [messageVisible, setMessageVisible] = useState(false);
 
   const [fromCurrencyOpen, setFromCurrencyOpen] = useState<boolean>(false);
   const [toCurrencyOpen, setToCurrencyOpen] = useState<boolean>(false);
@@ -61,7 +60,6 @@ export default function Convert() {
 
 
     try {
-      // Make API request for currency conversion
       const endpoint = `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_Z5ASNND7PH9Zv6nodjyWIhFdbKTt3dcMdSSajX10`;
       const response = await axios.get(endpoint, {
         params: {
@@ -71,7 +69,7 @@ export default function Convert() {
       });
 
       const conversionRate =
-        response.data.data[selected] || 0; // Get conversion rate from the response data
+        response.data.data[selected] || 0;
       const result = conversionRate * parseFloat(selamount.toString());
       setSelUpdatedAmount(result);
     } catch (error) {
@@ -82,9 +80,9 @@ export default function Convert() {
 
   const showInfo = () => {
     setIconVisible(!iconVisible);
-    setMessageVisible(true); // Show the message for 5 seconds
+    setMessageVisible(true);
     setTimeout(() => {
-      setMessageVisible(false); // Hide after 5 seconds
+      setMessageVisible(false);
     }, 5000);
   };
 

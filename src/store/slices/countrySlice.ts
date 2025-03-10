@@ -1,8 +1,8 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { TypeOfArray } from "../../types/type";
+import { TypeOfArray } from "../../types/Type.tsx";
 import axios from "axios";
-import { countryData } from "../../constants/constants.tsx";
+import { countryData } from "../../constants/Constants.tsx";
 
 export const axiosInstance = axios.create({
   baseURL: "https://api.freecurrencyapi.com/v1/",

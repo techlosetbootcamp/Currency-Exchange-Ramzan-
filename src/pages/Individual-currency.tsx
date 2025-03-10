@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
 import Button from "../components/button/Button.tsx";
 import Card from "../components/card/Card.tsx";
-import { cardData } from "../constants/constants.tsx";
+import { cardData } from "../constants/Constants.tsx";
 
 export default function IndividualCurrency() {
   const [isIPhone14, setIsIPhone14] = useState(false);

@@ -6,7 +6,7 @@ import { LiaExchangeAltSolid } from "react-icons/lia";
 import { fetchCountry } from "../store/slices/countrySlice.tsx";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
-import { useAppDispatch, useAppSelector } from "../store/store.tsx";
+import { useAppDispatch, useAppSelector } from "../store/store.ts";
 
 export default function Home() {
   const [amount, setAmount] = useState<number>(0);

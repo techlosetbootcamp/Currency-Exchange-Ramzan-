@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { CardProps } from "../../types/type";
+import { CardProps } from "../../types/Type";
 
 const Card: React.FC<CardProps> = (props) => {
   return (

@@ -6,7 +6,7 @@ import Button from "../components/button/Button.tsx";
 import { useLocation } from "react-router-dom";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
-import { useAppDispatch, useAppSelector } from "../store/store.tsx";
+import { useAppDispatch, useAppSelector } from "../store/store.ts";
 import axios from "axios";
 
 export default function Convert() {

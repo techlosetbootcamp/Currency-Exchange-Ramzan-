@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
-import { countryData } from "../../constants/constants";
 
 const Selectors: React.FC = () => {
   const [countries, setCountries] = useState<string[]>([]);
@@ -9,17 +8,13 @@ const Selectors: React.FC = () => {
   const [selected, setSelected] = useState<string>("EUR");
   const [open, setOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    setCountries(countryData || []);
-  }, []);
-
   return (
     <div className="w-full max-w-xs md:max-w-sm z-50 lg:max-w-md font-medium">
       {/* Selected Dropdown Header */}
       <div
         onClick={() => setOpen(!open)}
         className={`w-full p-3 flex items-center justify-between rounded-lg mt-5 font-bold text-2xl cursor-pointer ${
-         !selected && "text-gray-500"
+          !selected && "text-gray-500"
         }`}
       >
         <span>
@@ -41,7 +36,7 @@ const Selectors: React.FC = () => {
           style={{ zIndex: 10 }}
         >
           {/* Search Input */}
-           <div className="flex items-center px-3 sticky top-0 bg-white z-10 border-b border-gray-200">
+          <div className="flex items-center px-3 sticky top-0 bg-white z-10 border-b border-gray-200">
             <span className="text-gray-500">
               <AiOutlineSearch size={18} />
             </span>
@@ -52,7 +47,7 @@ const Selectors: React.FC = () => {
               placeholder="Enter country name"
               className="w-full p-2 outline-none placeholder:text-gray-400 text-sm"
             />
-          </div> 
+          </div>
 
           {/* Country List */}
           {countries.length > 0 ? (

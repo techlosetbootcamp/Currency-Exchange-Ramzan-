@@ -1,10 +1,14 @@
 import React from "react";
-import Routing from "./routing/Routing.tsx";
+import Routing from "./routing/Routing";
+import { Toaster } from "react-hot-toast";
 
-export default function App() {
+function App() {
   return (
-    <>
+    <div>
       <Routing />
-    </>
+      <Toaster position="top-right" />
+    </div>
   );
 }
+
+export default App;

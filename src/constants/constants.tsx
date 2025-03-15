@@ -19,7 +19,7 @@ export const countryData: Country[] = [
   },
   {
     name: "France",
-    currency: "EUR", 
+    currency: "EUR",
   },
   {
     name: "Switzerland",
@@ -55,19 +55,19 @@ export const countryData: Country[] = [
   },
   {
     name: "Russia",
-    currency: "RUB", 
+    currency: "RUB",
   },
   {
     name: "Turkey",
-    currency: "TRY", 
+    currency: "TRY",
   },
   {
     name: "Saudi Arabia",
-    currency: "SAR", 
+    currency: "SAR",
   },
   {
     name: "China",
-    currency: "CNH", 
+    currency: "CNH",
   },
   {
     name: "Indonesia",

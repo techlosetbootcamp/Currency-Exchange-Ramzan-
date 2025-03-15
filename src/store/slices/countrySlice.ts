@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { initialStateType } from "../../types/type.tsx";
-import { countryData } from "../../constants/constants.tsx";
-import { axiosInstance } from "../../utiles/axiosInstance.ts";
+import type { initialStateType } from "../../types/type"; // Corrected import
+import { countryData } from "../../constants/constants";
+import { axiosInstance } from "../../utiles/axiosInstance";
 
 export const fetchCountry = createAsyncThunk("country/fetch", async () => {
   const response = await axiosInstance.get("/latest/USD");
@@ -39,7 +39,6 @@ const countries = createSlice({
       state.rates = action.payload || [];
     },
   },
-
   extraReducers: (builder) => {
     builder.addCase(fetchCountry.fulfilled, (state, action) => {
       state.names = action.payload.nameArray || [];
@@ -53,5 +52,4 @@ const countries = createSlice({
 });
 
 export const { CountryNames, Rates } = countries.actions;
-
 export default countries.reducer;

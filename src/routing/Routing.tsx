@@ -7,13 +7,11 @@ import Page404 from "../pages/Page404.tsx";
 
 export default function Routing() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/individual-currency" element={<Individual />} />
-        <Route path="/convert" element={<Convert />} />
-        <Route path="*" element={<Page404 />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/individual-currency" element={<Individual />} />
+      <Route path="/convert" element={<Convert />} />
+      <Route path="*" element={<Page404 />} />
+    </Routes>
   );
 }

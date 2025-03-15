@@ -1,62 +1,35 @@
-
 import React, { useState, useEffect } from "react";
 import { LiaExchangeAltSolid } from "react-icons/lia";
 import Button from "../components/button/Button.tsx";
-import { fetchCountry } from "../store/slices/countrySlice.tsx";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
-import { useAppDispatch, useAppSelector } from "../store/store.ts";
-import { useQueryParams } from "../hook/useQueryParams";
 import { useCurrencyConverter } from "../hook/useCurrencyConverter";
 import { ImCross } from "react-icons/im";
 
+
 export default function Convert() {
-  const getQueryParam = useQueryParams();
   const {
     selamount,
     setSelAmount,
     selUpdatedAmount,
-    setSelUpdatedAmount,
-    resultData,
-    convertHandler,
+    selectedCurrency,
+    setSelectedCurrency,
+    iconVisible,
+    isOpenDrop,
+    setIsOpenDrop,
+    selected,
+    setSelected,
+    inputValue,
+    setInputValue,
+    isOpenHo,
+    setIsOpenHo,
+    conNames,
+    dataData,
+    resultRates,
+    rateIndex,
+    handleAmountChange,
+    showInfo,
   } = useCurrencyConverter();
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
-  const [iconVisible, setIconVisible] = useState<boolean>(false);
-  const [isOpenDrop, setIsOpenDrop] = useState<boolean>(false);
-  const [selected, setSelected] = useState<number | string>("EUR");
-  const [inputValue, setInputValue] = useState<string>("");
-  const [isOpenHo, setIsOpenHo] = useState<boolean>(false);
-
-  const conNames = useAppSelector((store) => store.countrySlice.rates) || [];
-  const dataData = useAppSelector((store) => store.countrySlice.dataData) || [];
-  const resultRates =
-    useAppSelector((store) => store.countrySlice.resultName) || [];
-  const resultName =
-    useAppSelector((store) => store.countrySlice.resultRates) || [];
-
-  const rateIndex = resultName.indexOf(selected) || "";
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCountry());
-    const currency = getQueryParam("currency") || "";
-    const to = getQueryParam("to") || "";
-    const from = getQueryParam("from") || "";
-
-    if (currency) setSelectedCurrency(currency);
-    if (from) setSelectedCurrency(from);
-    if (to) setSelected(to);
-  }, [dispatch]);
-
-  const handleAmountChange = () => {
-    setSelAmount(selUpdatedAmount);
-    setSelUpdatedAmount(selamount);
-  };
-
-  const showInfo = () => {
-    setIconVisible(!iconVisible);
-  };
 
   return (
     <>
@@ -80,7 +53,7 @@ export default function Convert() {
               <span className="font-bold">{dataData.length}</span> currencies,
               all at competitive rates with no hidden fees.
             </p>
-              <div className="mt-8 px-11 md:px-8 flex flex-col space-y-2 md:flex md:flex-row justify-between items-center">
+            <div className="mt-8 px-11 md:px-8 flex flex-col space-y-2 md:flex md:flex-row justify-between items-center">
               <div className="flex flex-row">
                 <div className="flex flex-col w-32 md:w-48 lg:w-56 text-start border space-y-1 border-secondary px-4 py-1">
                   <label htmlFor="selamount">Amount</label>
@@ -144,8 +117,8 @@ export default function Convert() {
                               setInputValue(e.target.value.toLowerCase())
                             }
                             placeholder="Search"
-                            className="w-full p-2 outline-none placeholder:text-gray-400 text-sm"/>
-                          
+                            className="w-full p-2 outline-none placeholder:text-gray-400 text-sm"
+                          />
                         </div>
                         <hr className="border border-gray-300" />
                         {dataData.length > 0
@@ -168,8 +141,8 @@ export default function Convert() {
                                     setSelected(country?.currency);
                                     setIsOpenDrop(false);
                                     setInputValue("");
-                                  }}>
-                                
+                                  }}
+                                >
                                   {country?.currency}{" "}
                                   <span className="ml-3 text-sm">
                                     {country?.name}
@@ -208,7 +181,7 @@ export default function Convert() {
               </div>
             )}
 
-            {resultData === selectedCurrency ? (
+            {resultRates === selectedCurrency ? (
               <div className="text-start pl-12 mt-5">
                 {selUpdatedAmount ? (
                   <>
@@ -231,7 +204,7 @@ export default function Convert() {
                             <div className="bg-light text-primary p-[20px] rounded-md shadow-lg">
                               <p
                                 className="float-end cursor-pointer"
-                                onClick={() => setIconVisible(false)}
+                                onClick={() =>iconVisible(false)}
                               >
                                 <ImCross />
                               </p>
@@ -265,7 +238,7 @@ export default function Convert() {
             )}
             <div
               onClick={() =>
-                convertHandler(selectedCurrency, selected, selamount)
+                conNames(selectedCurrency, selected, selamount)
               }
               className="md:pr-14 text-center md:text-end mt-9"
             >

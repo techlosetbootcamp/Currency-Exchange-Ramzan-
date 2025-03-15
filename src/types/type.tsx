@@ -6,7 +6,7 @@ export interface CardProps {
 export interface TypeOfArray {
   names: string[];
   rates: string[];
-  dataData: { name: string; currency: string }[];
+  dataData: Country[];
 }
 
 export interface DropdownItem {
@@ -22,4 +22,11 @@ export interface SearchableDropdownProps {
 export interface Country {
   name: string;
   currency: string;
+}
+export interface initialStateType {
+  names: string[];
+  rates: string[];
+  resultName: string[];
+  resultRates: string[];
+  dataData: Country[];
 }
